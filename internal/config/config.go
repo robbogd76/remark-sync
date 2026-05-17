@@ -48,10 +48,9 @@ type ActionPattern struct {
 }
 
 // TaskAPI configures the local task-central HTTP endpoint.
+// Leave URL empty to disable task posting.
 type TaskAPI struct {
-	URL     string            `yaml:"url"`
-	Token   string            `yaml:"token"`              // optional Bearer token
-	Headers map[string]string `yaml:"headers,omitempty"` // extra request headers
+	URL string `yaml:"url,omitempty"`
 }
 
 // OCRConfig controls the Azure Computer Vision OCR pipeline.
@@ -64,9 +63,7 @@ type OCRConfig struct {
 // DefaultConfig returns a Config with safe defaults.
 func DefaultConfig() *Config {
 	return &Config{
-		TaskAPI: TaskAPI{
-			URL: "http://localhost:3000/api/v1/tasks",
-		},
+		TaskAPI: TaskAPI{},
 		OCR: OCRConfig{},
 		ActionPatterns: []ActionPattern{
 			{Name: "ACTION", Start: `ACTION:`, End: `\*`},

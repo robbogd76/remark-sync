@@ -74,9 +74,7 @@ Edit `~/.config/remark-sync/config.yaml`:
 
 ```yaml
 task_api:
-  url: http://localhost:3000/api/v1/tasks   # TaskCentral default
-  token: ""                                 # optional Bearer token
-  headers: {}                               # optional extra headers
+  url: http://localhost:3000/api/v1/tasks   # leave empty to disable task posting
 
 ocr:
   azure_endpoint: "https://<resource>.cognitiveservices.azure.com"
@@ -207,7 +205,7 @@ Example POST body:
 }
 ```
 
-The API returns `201 Created` on success. Validation errors (`400`) are decoded and surfaced as human-readable messages. A Bearer token and/or custom headers can be set in the config.
+The API returns `201 Created` on success. Validation errors (`400`) are decoded and surfaced as human-readable messages.
 
 ## Document support
 
@@ -223,10 +221,7 @@ The API returns `201 Created` on success. Validation errors (`400`) are decoded 
 # ~/.config/remark-sync/config.yaml
 
 task_api:
-  url: "http://localhost:3000/api/v1/tasks"
-  token: ""                        # Bearer token (optional)
-  headers:                         # additional request headers (optional)
-    X-My-Header: value
+  url: "http://localhost:3000/api/v1/tasks"  # leave empty or omit to disable task posting
 
 ocr:
   azure_endpoint: "https://<resource>.cognitiveservices.azure.com"

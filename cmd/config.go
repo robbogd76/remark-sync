@@ -25,9 +25,6 @@ var configShowCmd = &cobra.Command{
 
 		// Print config with masked secrets.
 		display := *cfg
-		if display.TaskAPI.Token != "" {
-			display.TaskAPI.Token = mask(display.TaskAPI.Token)
-		}
 		if display.OCR.AzureKey != "" {
 			display.OCR.AzureKey = mask(display.OCR.AzureKey)
 		}

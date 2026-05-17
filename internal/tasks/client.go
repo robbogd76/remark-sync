@@ -55,20 +55,15 @@ type errorResponse struct {
 // Client posts tasks to the TaskCentral REST API.
 type Client struct {
 	baseURL string
-	token   string
-	headers map[string]string
 	http    *http.Client
 }
 
 // NewClient creates a Client.
 // baseURL should be the full URL to the tasks endpoint
 // (e.g. "http://localhost:3000/api/v1/tasks").
-// token is an optional Bearer token; headers are merged into every request.
-func NewClient(baseURL, token string, headers map[string]string) *Client {
+func NewClient(baseURL string) *Client {
 	return &Client{
 		baseURL: strings.TrimRight(baseURL, "/"),
-		token:   token,
-		headers: headers,
 		http:    &http.Client{Timeout: 15 * time.Second},
 	}
 }
@@ -92,12 +87,6 @@ func (c *Client) PostTask(req CreateTaskRequest) error {
 		return fmt.Errorf("building request: %w", err)
 	}
 	httpReq.Header.Set("Content-Type", "application/json")
-	if c.token != "" {
-		httpReq.Header.Set("Authorization", "Bearer "+c.token)
-	}
-	for k, v := range c.headers {
-		httpReq.Header.Set(k, v)
-	}
 
 	resp, err := c.http.Do(httpReq)
 	if err != nil {
@@ -139,12 +128,6 @@ func (c *Client) TaskExists(title string) (bool, error) {
 	httpReq, err := http.NewRequest(http.MethodGet, u, nil)
 	if err != nil {
 		return false, fmt.Errorf("building request: %w", err)
-	}
-	if c.token != "" {
-		httpReq.Header.Set("Authorization", "Bearer "+c.token)
-	}
-	for k, v := range c.headers {
-		httpReq.Header.Set(k, v)
 	}
 
 	resp, err := c.http.Do(httpReq)

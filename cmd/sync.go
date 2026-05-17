@@ -121,7 +121,10 @@ func runSync(cmd *cobra.Command, args []string) error {
 		obsClient = obsidian.NewClient(cfg.Obsidian.URL, cfg.Obsidian.APIKey, baseFolder)
 	}
 
-	taskClient := tasks.NewClient(cfg.TaskAPI.URL, cfg.TaskAPI.Token, cfg.TaskAPI.Headers)
+	var taskClient *tasks.Client
+	if cfg.TaskAPI.URL != "" {
+		taskClient = tasks.NewClient(cfg.TaskAPI.URL)
+	}
 
 	totalPosted := 0
 	for _, doc := range toProcess {
@@ -143,7 +146,7 @@ func runSync(cmd *cobra.Command, args []string) error {
 			fmt.Printf("    [%s] %s\n", a.Type, a.Description)
 		}
 
-		if dryRun {
+		if dryRun || taskClient == nil {
 			continue
 		}
 
