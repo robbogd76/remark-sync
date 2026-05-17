@@ -17,9 +17,9 @@ Remarkable tablet (USB)
   Azure Computer Vision  ← PDF sent directly, no local image conversion
        │
        ▼
-  match action_patterns  ← configurable start/end regex rules
+  Options
        │
-       ├─── POST to task-central API   (action items)
+       ├─── POST actions to task-central API   (action items, optional)
        └─── PUT to Obsidian vault      (full OCR text, optional)
 ```
 
