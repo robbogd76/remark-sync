@@ -1,0 +1,30 @@
+# Binaries
+remark-sync
+remark-sync.exe
+__debug_bin
+__debug_bin.exe
+
+# Build output
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test cache
+*.test
+*.out
+
+# Go workspace
+go.work
+go.work.sum
+
+# Config and state (contain secrets and local paths)
+~/.config/remark-sync/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebSearch",
+      "WebFetch(domain:docs.remarkable.net)",
+      "WebFetch(domain:akeil.de)",
+      "WebFetch(domain:ddvk.github.io)",
+      "Bash(go mod:*)",
+      "Bash(go build:*)",
+      "WebFetch(domain:remarkable.engineering)",
+      "WebFetch(domain:remarkable.jms1.info)",
+      "Bash(go vet:*)",
+      "Bash(./remark-sync.exe sync:*)",
+      "WebFetch(domain:sam-morrow.com)",
+      "WebFetch(domain:developer.remarkable.com)",
+      "WebFetch(domain:www.splitbrain.org)",
+      "WebFetch(domain:remarkable.guide)"
+    ]
+  }
+}
